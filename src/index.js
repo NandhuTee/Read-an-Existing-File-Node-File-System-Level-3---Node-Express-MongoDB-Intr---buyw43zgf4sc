@@ -1,10 +1,16 @@
 const fs = require("fs/promises");
-const fileName = "myfile.txt";
+
 const reader = async (fileName) => {
-  // write code here
-	// dont change function name
-  
+  try {
+     const content = await fs.readFile(fileName, 'utf-8');
+    
+    // Return the content of the file
+    return content;
+  } catch (error) {
+    // If there's an error, you can handle it here
+    console.error(`Error reading file: ${error.message}`);
+    throw error; // Re-throw the error to be handled by the caller
+  }
 };
 
-
-module.exports =  reader ;
+module.exports = reader;
